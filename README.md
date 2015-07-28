@@ -9,7 +9,7 @@ Small project that will probably brake as soon as the sunwell.pl page changes. I
 # Installation
 
 ### before you get started
-1. nodejs > 0.10 (need for generator support)
+1. nodejs > 0.10 (generators !!!1111!1)
 2. npm suited for your nodejs version
 3. ...and of course git
 
