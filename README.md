@@ -20,7 +20,7 @@ Small project that will probably brake as soon as the sunwell.pl page changes. I
 
 ### install dependecies
 ```
- npm install
+ sudo npm install
 ```
 
 ### run 
