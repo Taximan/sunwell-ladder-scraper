@@ -4,6 +4,9 @@ var level = require('level');
 var config = require('./config');
 var getLadder = require('./src/getLadder');
 var getTeams = require('./src/getTeams');
+var mergeTeamData = require('./src/mergeTeamData');
+
+var db = level('./saved/' + (+ new Date));
 
 co(function* main() {
 	process.stdout.write('getting the ladder...');
@@ -19,7 +22,10 @@ co(function* main() {
 		threes: getTeams(ladder.threes)
 	};
 	process.stdout.write('DONE \n');
+	
+	var dataTobeSaved = mergeTeamData(ladder, teams);
 
+		
 	
 
 });

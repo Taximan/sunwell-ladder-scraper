@@ -5,7 +5,7 @@ var requestAsync = require('./helpers').requestAsync;
 module.exports = co.wrap(function* getLadder(url){
 	var sunwellHtml = (yield requestAsync(url)).body;
 	var $ = cheerio.load(sunwellHtml);
-
+	
 	var tbl = $('table#rankingtable tr').get().map(function(row) {
 	  return $(row).find('td').get().map(function(cell) {
 	    return $(cell).html();

@@ -1,6 +1,5 @@
 var co = require('co');
 var cheerio = require('cheerio');
-var assign = require('object-assign');
 
 var requestAsync = require('./helpers').requestAsync;
 var SUNWELL_BASE_URL = require('../config').SUNWELL_BASE_URL;
@@ -13,7 +12,7 @@ module.exports = co.wrap(function* getTeams(ladder) {
 	});
 
 	var teamHtmls = yield Promise.all(reqs);
-
+	
 	var teams = teamHtmls.map(function(teamHtml) {
 		var extractor = /rows\[\d\]\s=\s\{(.+?)\}/g;
 		var match, teamMate;
@@ -28,6 +27,8 @@ module.exports = co.wrap(function* getTeams(ladder) {
 		return teamMates;
 
 	});
+
+
 
 	return teams;
 });
