@@ -23,9 +23,18 @@ co(function* main() {
 	};
 	process.stdout.write('DONE \n');
 	
-	var dataTobeSaved = mergeTeamData(ladder, teams);
-
-		
+	process.stdout.write('preping data for db to write...');
+	var dataTobeSaved = JSON.stringify(mergeTeamData(ladder, teams));
+	process.stdout.write('DONE \n');
 	
+	process.stdout.write('writing to db...');
+	db.put('ladder', dataTobeSaved, function(err) {
+		if(err) {
+			console.log('uhh some erroz: ', err);
+			return;
+		}	
 
+		process.stdout.write('DONE\n');
+	});
+	
 });
