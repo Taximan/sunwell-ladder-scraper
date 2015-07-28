@@ -1,12 +1,14 @@
 var co = require('co');
 var level = require('level');
+var path = require('path');
 
 var config = require('./config');
 var getLadder = require('./src/getLadder');
 var getTeams = require('./src/getTeams');
 var mergeTeamData = require('./src/mergeTeamData');
 
-var db = level('./saved/' + (+ new Date));
+var db = level(config.DATA_SAVE_LOCATION);
+var timestamp = (+new Date);
 
 co(function* main() {
 	process.stdout.write('getting the ladder...');
@@ -28,7 +30,7 @@ co(function* main() {
 	process.stdout.write('DONE \n');
 	
 	process.stdout.write('writing to db...');
-	db.put('ladder', dataTobeSaved, function(err) {
+	db.put(timestamp, dataTobeSaved, function(err) {
 		if(err) {
 			console.log('uhh some erroz: ', err);
 			return;
